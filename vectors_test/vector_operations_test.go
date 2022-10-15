@@ -42,3 +42,42 @@ func TestGetLength(t *testing.T) {
 		}
 	})
 }
+
+func TestFindScalarProduct(t *testing.T) {
+	t.Log("Start testing the second function.")
+
+	t.Run("integer coordinates", func(t *testing.T) {
+		var v1 = vectors.NewVector(-1, 5, 4)
+		var v2 = vectors.NewVector(5, -2, 0)
+
+		var expectedResult float64 = -15
+		var realResult = vectors.FindScalarProduct(v1, v2)
+
+		if realResult != expectedResult {
+			t.Errorf("expected result: %f != %f real result", expectedResult, realResult)
+		}
+	})
+
+	t.Run("fractional coordinates", func(t *testing.T) {
+		var v1 = vectors.NewVector(15.0, -234.5, 111.9)
+		var v2 = vectors.NewVector(51.2, 34.3, -88.0)
+
+		var expectedResult float64 = -17122.55
+		var realResult = vectors.FindScalarProduct(v1, v2)
+
+		if realResult != expectedResult {
+			t.Errorf("expected result: %f != %f real result", expectedResult, realResult)
+		}
+	})
+
+	t.Run("zero coordinates", func(t *testing.T) {
+		var v1, v2 = vectors.NewVector(0, 0, 0), vectors.NewVector(0, 0, 0)
+
+		var expectedResult float64 = 0
+		var realResult = vectors.FindScalarProduct(v1, v2)
+
+		if realResult != expectedResult {
+			t.Errorf("expected result: %f != %f real result", expectedResult, realResult)
+		}
+	})
+}
