@@ -1,45 +1,52 @@
 package vectors
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+)
 
 type Vector struct {
-	coordinateX float64
-	coordinateY float64
-	coordinateZ float64
+	X float64
+	Y float64
+	Z float64
+}
+
+func (v *Vector) GetLength() float64 {
+	return math.Sqrt(v.X*v.X + v.Y*v.Y + v.Z*v.Z)
 }
 
 func NewVector(x, y, z float64) Vector {
-	var v = Vector{}
-	v.setX(x)
-	v.setY(y)
-	v.setZ(z)
+	var v Vector
+	v.SetX(x)
+	v.SetY(y)
+	v.SetZ(z)
 	return v
 }
 
 func (v *Vector) ToString() {
-	fmt.Printf("[x = %.2f, y = %.2f, z = %.2f]\n", v.coordinateX, v.coordinateY, v.coordinateZ)
+	fmt.Printf("[x = %.2f, y = %.2f, z = %.2f]\n", v.X, v.Y, v.Z)
 }
 
-func (v *Vector) setX(x float64) {
-	v.coordinateX = x
+func (v *Vector) SetX(x float64) {
+	v.X = x
 }
 
-func (v *Vector) setY(y float64) {
-	v.coordinateY = y
+func (v *Vector) SetY(y float64) {
+	v.Y = y
 }
 
-func (v *Vector) setZ(z float64) {
-	v.coordinateZ = z
+func (v *Vector) SetZ(z float64) {
+	v.Z = z
 }
 
-func (v *Vector) getX() float64 {
-	return v.coordinateX
+func (v *Vector) GetX() float64 {
+	return v.X
 }
 
-func (v *Vector) getY() float64 {
-	return v.coordinateY
+func (v *Vector) GetY() float64 {
+	return v.Y
 }
 
-func (v *Vector) getZ() float64 {
-	return v.coordinateZ
+func (v *Vector) GetZ() float64 {
+	return v.Z
 }
