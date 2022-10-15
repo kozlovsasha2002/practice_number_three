@@ -11,6 +11,14 @@ type Vector struct {
 	Z float64
 }
 
+func FindCrossProduct(v1, v2 Vector) Vector {
+	var crossProduct Vector
+	crossProduct.SetX(math.Round((v1.Y*v2.Z-v1.Z*v2.Y)*100) / 100)
+	crossProduct.SetY(math.Round((v1.Z*v2.X-v1.X*v2.Z)*100) / 100)
+	crossProduct.SetZ(math.Round((v1.X*v2.Y-v1.Y*v2.X)*100) / 100)
+	return crossProduct
+}
+
 func FindScalarProduct(v1, v2 Vector) float64 {
 	return v1.X*v2.X + v1.Y*v2.Y + v1.Z*v2.Z
 }

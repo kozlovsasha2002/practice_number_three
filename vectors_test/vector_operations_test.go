@@ -81,3 +81,43 @@ func TestFindScalarProduct(t *testing.T) {
 		}
 	})
 }
+
+func TestFindCrossProduct(t *testing.T) {
+	t.Log("Start testing the third function.")
+
+	t.Run("integer coordinates", func(t *testing.T) {
+		var v1 = vectors.NewVector(-29, 48, 37)
+		var v2 = vectors.NewVector(32, -71, -31)
+
+		var expectedResult = vectors.NewVector(1139, 285, 523)
+		var realResult = vectors.FindCrossProduct(v1, v2)
+
+		if realResult != expectedResult {
+			t.Errorf("expected result: %f != %f real result", expectedResult, realResult)
+		}
+	})
+
+	t.Run("fractional coordinates", func(t *testing.T) {
+		var v1 = vectors.NewVector(123.5, -31.2, 117)
+		var v2 = vectors.NewVector(-211.7, -333.3, 81)
+
+		var expectedResult = vectors.NewVector(36468.9, -34772.4, -47767.59)
+		var realResult = vectors.FindCrossProduct(v1, v2)
+
+		if realResult != expectedResult {
+			t.Errorf("expected result: %f != %f real result", expectedResult, realResult)
+		}
+	})
+
+	t.Run("zero coordinates", func(t *testing.T) {
+		var v1 = vectors.NewVector(0, 0, 0)
+		var v2 = vectors.NewVector(0, 0, 0)
+
+		var expectedResult = vectors.NewVector(0, 0, 0)
+		var realResult = vectors.FindCrossProduct(v1, v2)
+
+		if realResult != expectedResult {
+			t.Errorf("expected result: %f != %f real result", expectedResult, realResult)
+		}
+	})
+}
