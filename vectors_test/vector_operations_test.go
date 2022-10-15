@@ -7,10 +7,12 @@ import (
 )
 
 func TestGetLength(t *testing.T) {
-	t.Run("whole numbers", func(t *testing.T) {
-		var v = vectors.NewVector(18, -23, 10)
-		var expectedResult float64 = math.Sqrt(float64(953))
+	t.Log("Start testing the first function.")
 
+	t.Run("whole coordinates", func(t *testing.T) {
+		var v = vectors.NewVector(18, -23, 10)
+
+		var expectedResult float64 = math.Sqrt(float64(953))
 		var realResult = v.GetLength()
 
 		if realResult != expectedResult {
@@ -18,7 +20,7 @@ func TestGetLength(t *testing.T) {
 		}
 	})
 
-	t.Run("fractional numbers", func(t *testing.T) {
+	t.Run("fractional coordinates", func(t *testing.T) {
 		var v = vectors.NewVector(14.0, -23.0, 17.5)
 		var expectedResult float64 = math.Sqrt(1031.25)
 
@@ -29,7 +31,7 @@ func TestGetLength(t *testing.T) {
 		}
 	})
 
-	t.Run("null vector", func(t *testing.T) {
+	t.Run("zero coordinates", func(t *testing.T) {
 		var v = vectors.NewVector(0, 0, 0)
 		var expectedResult float64 = 0
 
