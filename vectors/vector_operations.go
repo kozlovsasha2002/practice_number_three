@@ -11,6 +11,13 @@ type Vector struct {
 	Z float64
 }
 
+func AreVectorsPerpendicular(v1, v2 Vector) bool {
+	if calculateSumOfThePairwiseProductOfCoordinates(v1, v2) == 0 {
+		return true
+	}
+	return false
+}
+
 func FindCrossProduct(v1, v2 Vector) Vector {
 	var crossProduct Vector
 	crossProduct.SetX(math.Round((v1.Y*v2.Z-v1.Z*v2.Y)*100) / 100)
@@ -20,11 +27,15 @@ func FindCrossProduct(v1, v2 Vector) Vector {
 }
 
 func FindScalarProduct(v1, v2 Vector) float64 {
-	return v1.X*v2.X + v1.Y*v2.Y + v1.Z*v2.Z
+	return calculateSumOfThePairwiseProductOfCoordinates(v1, v2)
 }
 
 func (v *Vector) GetLength() float64 {
 	return math.Sqrt(v.X*v.X + v.Y*v.Y + v.Z*v.Z)
+}
+
+func calculateSumOfThePairwiseProductOfCoordinates(v1, v2 Vector) float64 {
+	return v1.X*v2.X + v1.Y*v2.Y + v1.Z*v2.Z
 }
 
 func NewVector(x, y, z float64) Vector {

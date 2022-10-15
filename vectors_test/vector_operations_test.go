@@ -121,3 +121,67 @@ func TestFindCrossProduct(t *testing.T) {
 		}
 	})
 }
+
+func TestAreVectorsPerpendicular(t *testing.T) {
+	t.Log("Start testing the fourth function.")
+
+	t.Run("integer coordinates (positive)", func(t *testing.T) {
+		var v1 = vectors.NewVector(1, 0, -2)
+		var v2 = vectors.NewVector(2, 5, 1)
+
+		var expectedResult = true
+		var realResult = vectors.AreVectorsPerpendicular(v1, v2)
+
+		if realResult != expectedResult {
+			t.Errorf("expected result: %t != %t real result", expectedResult, realResult)
+		}
+	})
+
+	t.Run("integer coordinates (negative)", func(t *testing.T) {
+		var v1 = vectors.NewVector(1, 0, -2)
+		var v2 = vectors.NewVector(-2, 5, 1)
+
+		var expectedResult = false
+		var realResult = vectors.AreVectorsPerpendicular(v1, v2)
+
+		if realResult != expectedResult {
+			t.Errorf("expected result: %t != %t real result", expectedResult, realResult)
+		}
+	})
+
+	t.Run("fractional coordinates (positive)", func(t *testing.T) {
+		var v1 = vectors.NewVector(11.5, 0, -33.3)
+		var v2 = vectors.NewVector(33.3, 37.7, 11.5)
+
+		var expectedResult = true
+		var realResult = vectors.AreVectorsPerpendicular(v1, v2)
+
+		if realResult != expectedResult {
+			t.Errorf("expected result: %t != %t real result", expectedResult, realResult)
+		}
+	})
+
+	t.Run("fractional coordinates (negative)", func(t *testing.T) {
+		var v1 = vectors.NewVector(11.2, 12.2, 33.3)
+		var v2 = vectors.NewVector(-2.2, 5.5, 7.7)
+
+		var expectedResult = false
+		var realResult = vectors.AreVectorsPerpendicular(v1, v2)
+
+		if realResult != expectedResult {
+			t.Errorf("expected result: %t != %t real result", expectedResult, realResult)
+		}
+	})
+
+	t.Run("zero coordinates", func(t *testing.T) {
+		var v1 = vectors.NewVector(0, 0, 0)
+		var v2 = vectors.NewVector(0, 0, 0)
+
+		var expectedResult = true
+		var realResult = vectors.AreVectorsPerpendicular(v1, v2)
+
+		if realResult != expectedResult {
+			t.Errorf("expected result: %t != %t real result", expectedResult, realResult)
+		}
+	})
+}
