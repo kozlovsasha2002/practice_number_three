@@ -185,3 +185,19 @@ func TestAreVectorsPerpendicular(t *testing.T) {
 		}
 	})
 }
+
+func TestFindCosineOfAngleBetweenVectors(t *testing.T) {
+	t.Log("Start testing the fifth function.")
+
+	t.Run("simple", func(t *testing.T) {
+		var v1 = vectors.NewVector(1, 6, -2)
+		var v2 = vectors.NewVector(2, 5, 3)
+
+		var expectedResult = 0.6587
+		var realResult = vectors.FindCosineOfAngleBetweenVectors(v1, v2)
+
+		if realResult != expectedResult {
+			t.Errorf("expected result: %f != %f real result", expectedResult, realResult)
+		}
+	})
+}

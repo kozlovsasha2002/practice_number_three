@@ -6,9 +6,17 @@ import (
 )
 
 type Vector struct {
-	X float64
-	Y float64
-	Z float64
+	x float64
+	y float64
+	z float64
+}
+
+func FindCosineOfAngleBetweenVectors(v1, v2 Vector) float64 {
+	var cosine float64
+	var numerator = calculateSumOfThePairwiseProductOfCoordinates(v1, v2)
+	var denominator = math.Sqrt((v1.x*v1.x + v1.y*v1.y + v1.z*v1.z) * (v2.x*v2.x + v2.y*v2.y + v2.z*v2.z))
+	cosine = numerator / denominator
+	return math.Round(cosine*10000) / 10000
 }
 
 func AreVectorsPerpendicular(v1, v2 Vector) bool {
@@ -20,9 +28,9 @@ func AreVectorsPerpendicular(v1, v2 Vector) bool {
 
 func FindCrossProduct(v1, v2 Vector) Vector {
 	var crossProduct Vector
-	crossProduct.SetX(math.Round((v1.Y*v2.Z-v1.Z*v2.Y)*100) / 100)
-	crossProduct.SetY(math.Round((v1.Z*v2.X-v1.X*v2.Z)*100) / 100)
-	crossProduct.SetZ(math.Round((v1.X*v2.Y-v1.Y*v2.X)*100) / 100)
+	crossProduct.SetX(math.Round((v1.y*v2.z-v1.z*v2.y)*100) / 100)
+	crossProduct.SetY(math.Round((v1.z*v2.x-v1.x*v2.z)*100) / 100)
+	crossProduct.SetZ(math.Round((v1.x*v2.y-v1.y*v2.x)*100) / 100)
 	return crossProduct
 }
 
@@ -31,11 +39,11 @@ func FindScalarProduct(v1, v2 Vector) float64 {
 }
 
 func (v *Vector) GetLength() float64 {
-	return math.Sqrt(v.X*v.X + v.Y*v.Y + v.Z*v.Z)
+	return math.Sqrt(v.x*v.x + v.y*v.y + v.z*v.z)
 }
 
 func calculateSumOfThePairwiseProductOfCoordinates(v1, v2 Vector) float64 {
-	return v1.X*v2.X + v1.Y*v2.Y + v1.Z*v2.Z
+	return v1.x*v2.x + v1.y*v2.y + v1.z*v2.z
 }
 
 func NewVector(x, y, z float64) Vector {
@@ -47,29 +55,29 @@ func NewVector(x, y, z float64) Vector {
 }
 
 func (v *Vector) ToString() {
-	fmt.Printf("[x = %.2f, y = %.2f, z = %.2f]\n", v.X, v.Y, v.Z)
+	fmt.Printf("[x = %.2f, y = %.2f, z = %.2f]\n", v.x, v.y, v.z)
 }
 
 func (v *Vector) SetX(x float64) {
-	v.X = x
+	v.x = x
 }
 
 func (v *Vector) SetY(y float64) {
-	v.Y = y
+	v.y = y
 }
 
 func (v *Vector) SetZ(z float64) {
-	v.Z = z
+	v.z = z
 }
 
 func (v *Vector) GetX() float64 {
-	return v.X
+	return v.x
 }
 
 func (v *Vector) GetY() float64 {
-	return v.Y
+	return v.y
 }
 
 func (v *Vector) GetZ() float64 {
-	return v.Z
+	return v.z
 }
